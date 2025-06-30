@@ -104,7 +104,7 @@ graph g_build(ifstream &g, bool d, bool w) {    //Prende tre parametri: g (un ri
 
 //Visita di grafi
 
-//Per implementare una visita BFS, occorre utilizzare una struttura dati 
+//Per implementare una visita BFS, occorre utilizzare una struttura dati -> coda con priorità
 struct elemBFS
 {
        int inf;                     //Informazione contenuta in ogni elemento della coda BFS
