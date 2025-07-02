@@ -1,0 +1,3 @@
+compito.o: compito.cc bst.h
+bst.o: bst.cc bst.h
+hotel.o: hotel.cc hotel.h bst.h
