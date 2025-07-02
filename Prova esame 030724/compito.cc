@@ -25,6 +25,28 @@ void stampa (bst b) {
     }
 }
 
+//Punto 2a -> dato un bst e un numero a di stelle, stampo tutti gli hotel con un numero di stelle maggiore di a se b è true, altrimenti stampo tutti gli hotel con un numero di stelle minore o uguale a a
+void ricerca (bst t, int a, bool b) {
+    if (t == NULL) {
+        return;
+    }
+    if (b) {
+        // Stampa gli hotel con un numero di stelle maggiore di a
+        if (t->inf.stelle > a) {
+            cout << "Nome: " << t->inf.nome << ", Stelle: " << t->inf.stelle << ", Luogo: " << t->inf.luogo << endl;
+        }
+        ricerca(t->left, a, b);
+        ricerca(t->right, a, b);
+    } else {
+        // Stampa gli hotel con un numero di stelle minore o uguale a a
+        if (t->inf.stelle <= a) {
+            cout << "Nome: " << t->inf.nome << ", Stelle: " << t->inf.stelle << ", Luogo: " << t->inf.luogo << endl;
+        }
+        ricerca(t->left, a, b);
+        ricerca(t->right, a, b);
+    }
+}
+
 
 int main () {
     ifstream file("hotel.txt");
@@ -50,6 +72,16 @@ int main () {
     }
 
     stampa(b);
+
+    //Punto 2a
+    int numero_stelle;
+    cout << "Inserisci il numero di stelle: ";
+    cin >> numero_stelle;
+    bool ctrl;
+    cout << "Inserisci 1 se vuoi stampare gli hotel con un numero di stelle maggiore di " << numero_stelle << ", altrimenti inserisci 0: ";
+    cin >> ctrl;
+    ricerca(b, numero_stelle, ctrl);
+    
 
     return 0;
 }
