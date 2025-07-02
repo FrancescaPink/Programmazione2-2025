@@ -1,6 +1,8 @@
 /*******************************/
 /* HEADER MODULO "liste" */
 /*******************************/
+#include "tipo.h"
+
 struct elem
 {
        tipo_inf inf;

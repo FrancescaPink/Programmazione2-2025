@@ -14,7 +14,7 @@
 using namespace std ;
 
 
-#include "tipo.h"
+
 #include "liste.h"
 
 

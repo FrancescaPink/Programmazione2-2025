@@ -4,7 +4,7 @@
 
 
 
-typedef struct{
+typedef struct {
 	char seme;
 	int valore;
 } tipo_inf;
