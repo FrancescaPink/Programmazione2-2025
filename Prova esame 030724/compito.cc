@@ -47,6 +47,19 @@ void ricerca (bst t, int a, bool b) {
     }
 }
 
+//Punto 2b -> dato in  in input un bst e un numero di stelle “soglia” e un luogo, restituisca il numero di hotel nel luogo specificato 
+//            con un numero di stelle superiore alla soglia. 
+int media(bst t, int a, char* l) {
+    if (t == NULL) {
+        return 0;
+    }
+    int contatore = 0;
+    if (strcmp(t->inf.luogo, l)==0 && t->inf.stelle > a)
+        contatore++;
+    return contatore + media(t->left, a, l) + media(t->right, a, l);
+}
+
+
 
 int main () {
     ifstream file("hotel.txt");
@@ -72,6 +85,7 @@ int main () {
     }
 
     stampa(b);
+    cout << endl;
 
     //Punto 2a
     int numero_stelle;
@@ -81,7 +95,18 @@ int main () {
     cout << "Inserisci 1 se vuoi stampare gli hotel con un numero di stelle maggiore di " << numero_stelle << ", altrimenti inserisci 0: ";
     cin >> ctrl;
     ricerca(b, numero_stelle, ctrl);
-    
+    cout << endl;
+
+    //Punto 2b
+    int soglia;
+    char luogo_ricerca[20];
+    cout << "Inserisci la soglia di stelle: ";
+    cin >> soglia;
+    cout << "Inserisci il luogo: ";
+    cin >> luogo_ricerca;
+    int hotel_restituiti = media(b, soglia, luogo_ricerca);
+    cout << "Valore soglia: " << soglia << "\tLuogo: " << luogo_ricerca << endl;
+    cout << "Hotel restituiti: " << hotel_restituiti << endl;
 
     return 0;
 }
