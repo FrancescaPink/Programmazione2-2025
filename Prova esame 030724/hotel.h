@@ -1,3 +1,8 @@
+/**
+ * @file hotel.h
+ * @brief Dichiarazione della struttura `tipo_inf` e della funzione `copy`.
+ */
+
 #ifndef HOTEL_H
 #define HOTEL_H
 

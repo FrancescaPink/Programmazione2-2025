@@ -1,3 +1,9 @@
+/**
+ * @file bst.cc
+ * @brief Implementazione delle funzioni per la gestione di un Binary Search Tree (BST).
+ * @details Contiene la definizione della struttura `bnode` e le funzioni per la manipolazione del BST.
+ */
+
 #include <iostream>
 using namespace std;
 

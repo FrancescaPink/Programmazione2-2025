@@ -1,3 +1,10 @@
+/**
+ * @file compito.cc
+ * @brief Main per il programma di gestione degli hotel
+ *        Questo programma legge un file di hotel, li inserisce in un BST e permette di effettuare ricerche e operazioni su di essi.
+ * @author Francesca 
+ */
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -5,18 +12,31 @@ using namespace std;
 
 #include "bst.h"
 
+/**
+ * @brief Inserisce un nuovo hotel nel BST.
+ * @param b Il BST in cui inserire l'hotel.
+ * @param stelle Numero di stelle dell'hotel.
+ * @param nome Nome dell'hotel.
+ * @param luogo Luogo dell'hotel.
+ * @details Crea un nodo di tipo `bnode` con le informazioni dell'hotel e lo inserisce nel BST.
+ *          La chiave del nodo è basata sul numero di stelle.
+ */
 void inserisci_in_bst(bst& b, int stelle, const char* nome, const char* luogo) {
     tipo_inf i;
     i.stelle = stelle;
     strcpy(i.nome, nome);
     strcpy(i.luogo, luogo);
-    tipo_key k = stelle;  // oppure qualche altro criterio per la chiave
+    tipo_key k = stelle;  
 
     bnode* nodo = bst_newNode(k, i);
     bst_insert(b, nodo);
 }
 
-
+/**
+ * @brief Stampa gli hotel presenti nel BST in ordine decrescente di stelle.
+ * @param b Il BST da cui stampare gli hotel.
+ * @details Effettua una visita del BST e stampa le informazioni di ogni hotel.
+ */
 void stampa (bst b) {
     if (b != NULL) {
         stampa(b->left);
@@ -25,7 +45,13 @@ void stampa (bst b) {
     }
 }
 
-//Punto 2a -> dato un bst e un numero a di stelle, stampo tutti gli hotel con un numero di stelle maggiore di a se b è true, altrimenti stampo tutti gli hotel con un numero di stelle minore o uguale a a
+/**
+ * @brief Ricerca e stampa gli hotel in base al numero di stelle.
+ * @param t Il BST da cui effettuare la ricerca.
+ * @param a Numero di stelle da confrontare.
+ * @param b Booleano che indica se cercare hotel con stelle maggiori (true) o minori/uguali (false) a `a`.
+ * @details Se `b` è true, stampa gli hotel con un numero di stelle maggiore di `a`, altrimenti stampa quelli con un numero di stelle minore o uguale a `a`.
+ */
 void ricerca (bst t, int a, bool b) {
     if (t == NULL) {
         return;
@@ -33,22 +59,28 @@ void ricerca (bst t, int a, bool b) {
     if (b) {
         // Stampa gli hotel con un numero di stelle maggiore di a
         if (t->inf.stelle > a) {
-            cout << "Nome: " << t->inf.nome << ", Stelle: " << t->inf.stelle << ", Luogo: " << t->inf.luogo << endl;
+            cout << t->inf.stelle << " stelle " << t->inf.nome << " " << t->inf.luogo << endl;
         }
         ricerca(t->left, a, b);
         ricerca(t->right, a, b);
     } else {
         // Stampa gli hotel con un numero di stelle minore o uguale a a
         if (t->inf.stelle <= a) {
-            cout << "Nome: " << t->inf.nome << ", Stelle: " << t->inf.stelle << ", Luogo: " << t->inf.luogo << endl;
+            cout << t->inf.stelle << " stelle " << t->inf.nome << " " << t->inf.luogo << endl;
         }
         ricerca(t->left, a, b);
         ricerca(t->right, a, b);
     }
 }
 
-//Punto 2b -> dato in  in input un bst e un numero di stelle “soglia” e un luogo, restituisca il numero di hotel nel luogo specificato 
-//            con un numero di stelle superiore alla soglia. 
+/**
+ * @brief Calcola il numero di hotel in un determinato luogo con un numero di stelle superiore a una soglia.
+ * @param t Il BST da cui effettuare la ricerca.
+ * @param a Soglia di stelle.
+ * @param l Luogo in cui cercare gli hotel.
+ * @return Il numero di hotel che soddisfano i criteri di ricerca.
+ * @details Effettua una visita del BST e conta gli hotel che hanno un numero di stelle superiore a `a` e che si trovano nel luogo specificato da `l`.
+ */
 int media(bst t, int a, char* l) {
     if (t == NULL) {
         return 0;
@@ -59,8 +91,11 @@ int media(bst t, int a, char* l) {
     return contatore + media(t->left, a, l) + media(t->right, a, l);
 }
 
-
-
+/**
+ * @brief Funzione principale del programma.
+ * @details Legge gli hotel da un file, li inserisce in un BST, e permette di effettuare ricerche e operazioni su di essi.
+ *          Gestisce l'input dell'utente per le ricerche e stampa i risultati.
+ */
 int main () {
     ifstream file("hotel.txt");
     if (!file) {

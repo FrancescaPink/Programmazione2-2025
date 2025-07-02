@@ -1,3 +1,9 @@
+/**
+ * @file bst.h
+ * @brief Dichiarazione delle strutture e funzioni per la gestione di un Binary Search Tree (BST).
+ * @details Contiene la definizione della struttura `bnode` e le funzioni per la manipolazione del BST.
+ */
+
 //Includo il file hotel.h per poter utilizzare il tipo tipo_inf
 #include "hotel.h"
 
