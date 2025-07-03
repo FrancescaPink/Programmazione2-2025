@@ -1,0 +1,3 @@
+compito.o: compito.cc grafi.h node.h
+grafi.o: grafi.cc grafi.h 
+coda.o: coda.cc coda.h
